@@ -1,25 +1,28 @@
 # 🧩 Customer Segmentation with K-Means + RFM
 
-An unsupervised-learning system that groups customers by **Recency, Frequency, and Monetary value** so marketing teams can personalize campaigns.
+An unsupervised-learning project that turns transactions into actionable customer segments for targeted marketing.
 
-## How it works
-1. Start from transaction-level customer, date, quantity, and price data.
-2. Aggregate each customer into RFM features: days since last purchase, order count, and total spend.
-3. Log-transform skewed values and standardize them.
-4. Train K-Means and compare silhouette scores across candidate cluster counts.
-5. Profile each cluster and map it to business labels such as Champions, Loyal, At Risk, or New.
-6. Recommend a campaign for each segment.
+## Pipeline
+1. Load transaction records with customer, date, quantity, and price.
+2. Aggregate Recency, Frequency, and Monetary value per customer.
+3. Log-transform skewed values and standardize features.
+4. Compare candidate cluster counts with silhouette score.
+5. Profile clusters and assign business labels.
+6. Recommend campaigns for each segment.
 
-## Tech stack
-Python, Pandas, NumPy, Scikit-learn, Plotly, Streamlit
+## Segments
+- **Champions:** recent, frequent, high-value customers
+- **Loyal:** regular customers with strong spend
+- **At Risk:** previously valuable but becoming inactive
+- **New/Hibernating:** low history or long time since purchase
+
+## Interview talking points
+- RFM creates interpretable features business teams can act on.
+- Scaling and log transforms are crucial because K-Means is distance-based.
+- The best K balances silhouette score, stability, interpretability, and campaign uplift.
 
 ## Run
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-## Interview points
-- RFM turns raw transactions into interpretable customer behavior signals.
-- Scaling and log transforms are essential because K-Means is distance-based and spend is usually skewed.
-- Choose K using silhouette score, stability, business interpretability, and campaign uplift—not one chart alone.
